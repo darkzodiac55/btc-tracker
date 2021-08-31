@@ -1,48 +1,73 @@
-class trackerDial  {
-    
-    price = 0
+class trackerDial {
 
-    getPrice () {
-        this.price = 40000
+    upPrice(delay) {
+        setInterval(() => {
+            this.getAPrice()
+        }, delay)
     }
 
-    /* upPrice (delay) {
-        setInterval(()=>{
-            this.price += 5
-            this.id.innerText = this.price
-        },delay)
-    } */
-}
-
-class mainDial extends trackerDial{
-    constructor() {
-        super()
-        this.getPrice()
-        /* this.upPrice(2000) */
-    }
-    id = document.querySelector(".contMain h1")
-    delay = 2000
-}
-
-//////////////////currency selectable
-
-class init {
-    static initDials() {
-    this.rMainDial = new mainDial()
-    }
-
-    static async getAPrice() {
+    async getAPrice() {
         try {
             let response = await axios.get('https://api.cryptonator.com/api/ticker/btc-eur')
-            let price = response.data.ticker.price
-            let EUprice = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(price);
-            console.log(typeof EUprice);
-            this.rMainDial.id.innerText = EUprice
+            this.price = response.data.ticker.price
+            let EUprice = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(this.price);
+            this.addLis(EUprice)
+
         } catch (error) {
             console.error(error);
         }
     }
+    addLis(price) {
+
+        this.id.classList.remove("fade"); // removing the class
+        setTimeout(() => {
+            requestAnimationFrame(() => {
+                // We are manually adding new content and adding class again to node
+                init.priceSetter(price)
+                this.id.classList.add("fade");
+            });
+        }, 700); // timeout
+
+
+    }
+}
+
+class mainDial extends trackerDial {        //////can potentially add individual "Dials" for each currency/per various days
+    constructor() {
+        super()
+        this.getAPrice()
+        this.upPrice(this.delay)
+        this.addLis()
+    }
+    id = document.querySelector(".contMain h1")
+    delay = 10000000
+
+
+}
+
+/* function toggleTransitionWithTimeout() {
+    $text1.classList.remove("fade"); // removing the class
+    setTimeout(() => {
+        requestAnimationFrame(() => {
+            // We are manually adding new content and adding class again to node
+            $text1.innerHTML = content;
+            $text1.classList.add("fade");
+        });
+    }, 225); // timeout
+} */
+
+//////////////////currency selectable
+
+
+class init {
+    static initDials() {
+        this.rMainDial = new mainDial()
+    }
+    static priceSetter(price) {
+        this.rMainDial.id.innerText = price
+    }
+
 }
 
 init.initDials()
-init.getAPrice()
+
