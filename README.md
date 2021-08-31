@@ -1,3 +1,4 @@
 # btc-tracker
 
-Lightweight, easy to read and mobile friendly Bitcoin price tracker using Cryptonator api.
+Lightweight, easy to read and mobile friendly realtime Crypto price tracker using Cryptonator api.
+
