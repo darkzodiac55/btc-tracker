@@ -10,17 +10,49 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
+    font-size: 0.5rem;
+}
+
+.contMain {
+    height: 7rem;
+    width: auto;
+    background-color: rgba(255, 255, 255, 0.63);
+    padding-left: 5rem;
+    padding-right: 5rem;
+    display: flex;
+    align-items: center;
+    border-radius: 120px;
+    box-shadow: 0 28px 36px rgba(0, 0, 0, 0.26);
+    font-family: 'Karla', sans-serif;
+    
+    
 }
 
 @media (min-width: 1200px) {
     body {
         font-size: 6rem;
     }
+    .contMain {
+        height: 20rem;
+        text-shadow: 6px 3px 5px #89aead;
+    }
 }
 
 @media (min-width: 800px) and (max-width: 1200px){
     body {
         font-size: 5rem;
+    }
+    .contMain {
+        height: 15rem;
+        text-shadow: 4px 2px 3px #89aead;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 800px){
+    body {
+        font-size: 3rem;
+    }
+    .contMain {
+        height: 10rem;
     }
 }
