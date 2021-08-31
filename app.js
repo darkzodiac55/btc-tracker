@@ -40,7 +40,7 @@ class mainDial extends trackerDial {        //////can potentially add individual
         this.addLis()
     }
     id = document.querySelector(".contMain h1")
-    delay = 10000000
+    delay = 20000
 
 
 }
