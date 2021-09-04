@@ -44,9 +44,14 @@ class mainDial extends trackerDial {        //////can potentially add individual
     delay = 2000000
     storedCurrency() {
         if (localStorage.currency) {
-            console.log(localStorage.getItem('currency'));
             this.cur = localStorage.getItem('currency')
             init.buttonChanger(this.cur)
+        }
+    }
+    storedCrypto() {
+        if (localStorage.crypto) {
+            this.cry = localStorage.getItem('crypto')
+            init.cryptoBtnChanger(this.cry)
         }
     }
     cur = 'eur'
@@ -113,11 +118,11 @@ class init {
             this.header.btnCur.innerText = 'USD'
         }
         localStorage.setItem('currency', this.rMainDial.cur)
-        console.log(localStorage.currency);
     }
     static cryptoSetter(selectedCry) {
         this.rMainDial.cry = selectedCry
         this.rMainDial.getAPrice(this.rMainDial.cry, this.rMainDial.cur)
+        localStorage.setItem('crypto', this.rMainDial.cry)
     }
     static buttonChanger(cur) {
         let oppositeCur
@@ -128,10 +133,21 @@ class init {
         }
         this.header.btnCur.innerText = oppositeCur.toUpperCase()
     }
+    static cryptoBtnChanger(cry) {
+        let spans = this.header.btnsCry.children;
+        for (const span of spans) {
+            span.classList.remove('selected')
+            if (span.innerText === cry.toUpperCase()) {
+                span.classList.add('selected')
+            }
+        }
+        
+    }
     static addLoadLis() {
-        document.addEventListener("DOMContentLoaded", () =>{
+        document.addEventListener("DOMContentLoaded", () => {
             this.rMainDial.storedCurrency()
-            this.rMainDial.getAPrice(this.rMainDial.cry,this.rMainDial.cur)
+            this.rMainDial.storedCrypto()
+            this.rMainDial.getAPrice(this.rMainDial.cry, this.rMainDial.cur)
         });
     }
 
@@ -141,4 +157,5 @@ init.initHeader()
 init.initDials()
 init.addLoadLis()
 
+////adjust final delay
 
