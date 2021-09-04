@@ -35,12 +35,20 @@ class trackerDial {
 class mainDial extends trackerDial {        //////can potentially add individual "Dials" for each currency/per various days
     constructor() {
         super()
-        this.getAPrice('btc', 'eur')
+        this.storedCurrency()
+        this.getAPrice('btc', this.cur)
         this.upPrice(this.delay)
         
     }
     id = document.querySelector(".contMain h1")
     delay = 2000000
+    storedCurrency() {
+        if (localStorage.currency) {
+            console.log(localStorage.getItem('currency'));
+            this.cur = localStorage.getItem('currency')
+            init.buttonChanger(this.cur)
+        }
+    }
     cur = 'eur'
     cry = 'btc'
 
@@ -104,14 +112,27 @@ class init {
             this.rMainDial.getAPrice(this.rMainDial.cry, 'eur')
             this.header.btnCur.innerText = 'USD'
         }
+        localStorage.setItem('currency', this.rMainDial.cur)
     }
     static cryptoSetter(selectedCry) {
         this.rMainDial.cry = selectedCry
         this.rMainDial.getAPrice(this.rMainDial.cry, this.rMainDial.cur)
     }
+    static buttonChanger(cur) {
+        let oppositeCur 
+        if (cur === 'eur') {
+            oppositeCur = 'usd'
+        } else {
+            oppositeCur = 'eur'
+        }
+
+
+        this.header.btnCur.innerText = oppositeCur.toUpperCase()
+    }
 
 }
 
-init.initDials()
 init.initHeader()
+init.initDials()
+
 
