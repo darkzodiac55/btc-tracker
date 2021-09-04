@@ -37,7 +37,7 @@ class mainDial extends trackerDial {        //////can potentially add individual
         super()
         this.getAPrice()
         this.upPrice(this.delay)
-        this.addLis()
+        
     }
     id = document.querySelector(".contMain h1")
     delay = 20000
