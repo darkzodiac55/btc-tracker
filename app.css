@@ -48,6 +48,15 @@ body {
     cursor: pointer;
 }
 
+
+.header span:hover{
+    background-color: #a2f7f452;
+}
+
+.header span:active {
+  background-color: #a2f7f4d2;
+}
+
 .cryptos {
     display: contents;
 }

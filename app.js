@@ -2,13 +2,13 @@ class trackerDial {
 
     upPrice(delay) {
         setInterval(() => {
-            this.getAPrice(this.cur)
+            this.getAPrice(this.cry, this.cur)
         }, delay)
     }
 
-    async getAPrice(cur) {
+    async getAPrice(cry,cur) {
         try {
-            let response = await axios.get(`https://api.cryptonator.com/api/ticker/btc-${cur}`)
+            let response = await axios.get(`https://api.cryptonator.com/api/ticker/${cry}-${cur}`)
             this.price = response.data.ticker.price
             let EUprice = new Intl.NumberFormat('de-DE', { style: 'currency', currency: `${cur}` }).format(this.price);
             this.addLis(EUprice)
@@ -35,24 +35,38 @@ class trackerDial {
 class mainDial extends trackerDial {        //////can potentially add individual "Dials" for each currency/per various days
     constructor() {
         super()
-        this.getAPrice('eur')
+        this.getAPrice('btc', 'eur')
         this.upPrice(this.delay)
         
     }
     id = document.querySelector(".contMain h1")
     delay = 2000000
     cur = 'eur'
+    cry = 'btc'
 
 }
 
 class Header {
     constructor() {
         this.addLisCur()
+        this.addLisCry()
     }
     btnCur = document.querySelector(".currency")
     addLisCur() {
         this.btnCur.addEventListener('click', ()=>{
-            init.currencySetter('usd')
+            /* console.log(this.btnCur.innerText); */
+            init.currencySetter()
+        })
+    }
+    btnsCry = document.querySelector(".cryptos")
+    addLisCry() {
+        this.btnsCry.addEventListener('click', (e)=>{
+            let spans = e.currentTarget.children;
+            for (const span of spans) {
+                span.classList.remove('selected')
+            }
+            e.target.classList.add('selected')
+            init.cryptoSetter(e.target.innerText.toLowerCase())
         })
     }
 
@@ -69,11 +83,6 @@ class Header {
     }, 225); // timeout
 } */
 
-//////////////////currency selectable
-
-class DOMhelper {
-    
-}
 
 class init {
     static initDials() {
@@ -85,9 +94,20 @@ class init {
     static priceSetter(price) {
         this.rMainDial.id.innerText = price
     }
-    static currencySetter(cur) {
-        this.rMainDial.cur = cur
-        this.rMainDial.getAPrice(cur)
+    static currencySetter() {
+        if (this.header.btnCur.innerText === 'USD') {
+            this.rMainDial.cur = 'usd'
+            this.rMainDial.getAPrice(this.rMainDial.cry, 'usd')
+            this.header.btnCur.innerText = 'EUR'
+        } else {
+            this.rMainDial.cur = 'eur'
+            this.rMainDial.getAPrice(this.rMainDial.cry, 'eur')
+            this.header.btnCur.innerText = 'USD'
+        }
+    }
+    static cryptoSetter(selectedCry) {
+        this.rMainDial.cry = selectedCry
+        this.rMainDial.getAPrice(this.rMainDial.cry, this.rMainDial.cur)
     }
 
 }
