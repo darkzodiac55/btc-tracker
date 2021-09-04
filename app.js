@@ -6,7 +6,7 @@ class trackerDial {
         }, delay)
     }
 
-    async getAPrice(cry,cur) {
+    async getAPrice(cry, cur) {
         try {
             let response = await axios.get(`https://api.cryptonator.com/api/ticker/${cry}-${cur}`)
             this.price = response.data.ticker.price
@@ -36,19 +36,19 @@ class mainDial extends trackerDial {        //////can potentially add individual
     constructor() {
         super()
         /* this.storedCurrency() */
-        this.getAPrice('btc', this.cur)
+        /* this.getAPrice('btc', this.cur) */
         this.upPrice(this.delay)
-        
+
     }
     id = document.querySelector(".contMain h1")
     delay = 2000000
-    /* storedCurrency() {
+    storedCurrency() {
         if (localStorage.currency) {
             console.log(localStorage.getItem('currency'));
             this.cur = localStorage.getItem('currency')
             init.buttonChanger(this.cur)
         }
-    } */
+    }
     cur = 'eur'
     cry = 'btc'
 
@@ -61,14 +61,14 @@ class Header {
     }
     btnCur = document.querySelector(".currency")
     addLisCur() {
-        this.btnCur.addEventListener('click', ()=>{
+        this.btnCur.addEventListener('click', () => {
             /* console.log(this.btnCur.innerText); */
             init.currencySetter()
         })
     }
     btnsCry = document.querySelector(".cryptos")
     addLisCry() {
-        this.btnsCry.addEventListener('click', (e)=>{
+        this.btnsCry.addEventListener('click', (e) => {
             let spans = e.currentTarget.children;
             for (const span of spans) {
                 span.classList.remove('selected')
@@ -120,20 +120,25 @@ class init {
         this.rMainDial.getAPrice(this.rMainDial.cry, this.rMainDial.cur)
     }
     static buttonChanger(cur) {
-        let oppositeCur 
+        let oppositeCur
         if (cur === 'eur') {
             oppositeCur = 'usd'
         } else {
             oppositeCur = 'eur'
         }
-
-
         this.header.btnCur.innerText = oppositeCur.toUpperCase()
+    }
+    static addLoadLis() {
+        document.addEventListener("DOMContentLoaded", () =>{
+            this.rMainDial.storedCurrency()
+            this.rMainDial.getAPrice(this.rMainDial.cry,this.rMainDial.cur)
+        });
     }
 
 }
 
 init.initHeader()
 init.initDials()
+init.addLoadLis()
 
 
