@@ -1,5 +1,6 @@
 import { Header } from "./Header";
 import { mainDial } from "./mainDial";
+import { Tooltip } from "./Tooltip";
 
 export default class init {
     static initDials() {
@@ -7,6 +8,9 @@ export default class init {
     }
     static initHeader() {
         this.header = new Header()
+    }
+    static initTooltip() {
+        this.tooltip = new Tooltip()
     }
     static priceSetter(price) {
         this.rMainDial.id.innerText = price
@@ -51,6 +55,7 @@ export default class init {
         document.addEventListener("DOMContentLoaded", () => {
             this.rMainDial.storedCurrency()
             this.rMainDial.storedCrypto()
+            this.tooltip.appear()
             this.rMainDial.getAPrice(this.rMainDial.cry, this.rMainDial.cur)
         });
     }

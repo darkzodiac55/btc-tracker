@@ -26,6 +26,25 @@ body {
     font-family: 'Karla', sans-serif;
 }
 
+.contSecond {
+    height: 4.7rem;
+    width: auto;
+    background: rgba(255, 236, 131, 0.863);
+    padding-left: 5rem;
+    padding-right: 5rem;
+    display: none;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 28px 36px rgba(0, 0, 0, 0.26);
+    font-family: 'Karla', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    position: absolute;
+    bottom: 13rem;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
 .header {
     height: 3.2rem;
     width: 100%;
@@ -138,3 +157,26 @@ body {
 /* span:nth-child(2) {
     background-color: red;
 } */
+
+.closer {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    color: red;
+    cursor: pointer;
+}
+
+.visible {
+    display: flex;
+    animation: fade-slide-in 0.3s ease-out forwards;
+}
+
+
+@keyframes fade-slide-in {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(3rem);
+    }
+  }
