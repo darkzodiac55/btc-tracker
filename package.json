@@ -1,0 +1,27 @@
+{
+  "name": "btc-tracker",
+  "version": "1.0.0",
+  "description": "Lightweight, easy to read and mobile friendly realtime (AJAX) Crypto price tracker using Cryptonator api.  Updates price every 20 seconds and remembers your selection.",
+  "private": "true",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkzodiac55/btc-tracker.git"
+  },
+  "author": "Igor Gajdac",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/darkzodiac55/btc-tracker/issues"
+  },
+  "homepage": "https://github.com/darkzodiac55/btc-tracker#readme",
+  "devDependencies": {
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.3"
+  }
+}
