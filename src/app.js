@@ -1,6 +1,7 @@
 
 
 import init from "./init";
+import "./app.css"
 
 init.initHeader()
 init.initDials()
