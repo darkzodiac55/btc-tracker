@@ -1,6 +1,5 @@
 import init from "./init";
 const axios = require('axios'); /////import axios from 'axios' --- difference??
-
 export class trackerDial {
 
     upPrice(delay) {

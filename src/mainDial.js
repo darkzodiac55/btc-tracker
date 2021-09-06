@@ -1,5 +1,6 @@
-import init from "./init";
 import { trackerDial } from "./trackerDial";
+import init from "./init";
+
 
 export class mainDial extends trackerDial {        //////can potentially add individual "Dials" for each currency/per various days
     constructor() {
@@ -10,7 +11,7 @@ export class mainDial extends trackerDial {        //////can potentially add ind
 
     }
     id = document.querySelector(".contMain h1")
-    delay = 20000
+    
     storedCurrency() {
         if (localStorage.currency) {
             this.cur = localStorage.getItem('currency')
@@ -25,5 +26,6 @@ export class mainDial extends trackerDial {        //////can potentially add ind
     }
     cur = 'eur'
     cry = 'btc'
+    delay = 20000
 
 }
