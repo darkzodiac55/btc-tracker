@@ -8,5 +8,4 @@ init.initDials()
 init.initTooltip()
 init.addLoadLis()
 
-////adjust final delay
 

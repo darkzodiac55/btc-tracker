@@ -10,7 +10,7 @@ export class mainDial extends trackerDial {        //////can potentially add ind
 
     }
     id = document.querySelector(".contMain h1")
-    delay = 2000000
+    delay = 20000
     storedCurrency() {
         if (localStorage.currency) {
             this.cur = localStorage.getItem('currency')
