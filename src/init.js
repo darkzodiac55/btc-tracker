@@ -1,6 +1,7 @@
 import { Header } from "./Header";
 import { mainDial } from "./mainDial";
 import { Tooltip } from "./Tooltip";
+import ReadmePopup from "./Readme";
 
 export default class init {
     static initDials() {
@@ -11,6 +12,9 @@ export default class init {
     }
     static initTooltip() {
         this.tooltip = new Tooltip()
+    }
+    static initReadme() {
+        this.readme = new ReadmePopup()
     }
     static priceSetter(price) {
         this.rMainDial.id.innerText = price

@@ -8,6 +8,7 @@ module.exports = {
       template: "./src/template.html"
     })
   ],
+  mode: "production",
   module: {
     rules: [
       {
@@ -26,6 +27,6 @@ module.exports = {
 },
   output: {
   filename: 'main.[contenthash].js',
-    path: path.resolve(__dirname),
+    path: path.resolve(__dirname, 'build'),
   },
 };

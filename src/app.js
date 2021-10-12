@@ -7,5 +7,5 @@ init.initHeader()
 init.initDials()
 init.initTooltip()
 init.addLoadLis()
-
+init.initReadme()
 
